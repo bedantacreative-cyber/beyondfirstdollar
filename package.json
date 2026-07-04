@@ -1,0 +1,10 @@
+{
+  "name": "beyond-first-dollar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Beyond First Dollar landing funnel with Razorpay checkout",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "razorpay": "^2.9.4"
+  }
+}
