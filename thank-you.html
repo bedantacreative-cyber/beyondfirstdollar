@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>You're in | Beyond First Dollar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;450;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#EDEFE9;--paper-2:#E4E7DF;--ink:#13241B;--ink-soft:#25392E;
+    --pine:#1C6B45;--lime:#C6F24E;--gold:#E0A526;--mute:#66756B;--line:#CDD2C7;--radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ink);color:var(--paper);font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 20px}
+  .mono{font-family:'Space Mono',monospace}
+  .card{max-width:640px;width:100%;text-align:center}
+
+  .check{
+    width:78px;height:78px;border-radius:50%;background:var(--lime);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 26px;
+    border:3px solid var(--paper);
+    animation:pop .5s cubic-bezier(.2,1.4,.4,1) both;
+  }
+  .check svg{width:38px;height:38px}
+  @keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+
+  .eyebrow{font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);font-weight:700;margin-bottom:16px}
+  h1{font-family:'Archivo';font-weight:900;font-size:clamp(34px,7vw,56px);letter-spacing:-.035em;line-height:.98}
+  h1 .g{color:var(--gold)}
+  .sub{margin:20px auto 0;color:#c3cec6;max-width:44ch;font-size:18px}
+
+  .next{
+    margin:34px 0 0;text-align:left;background:#1a2e23;border:1.5px solid #2c3f34;
+    border-radius:var(--radius);padding:26px 26px 24px;
+  }
+  .next .lbl{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#8fa598;margin-bottom:16px}
+  .step{display:flex;gap:14px;align-items:flex-start;padding:11px 0;border-top:1px dashed #33473b}
+  .step:first-of-type{border-top:none;padding-top:0}
+  .step .num{font-family:'Space Mono',monospace;font-weight:700;color:var(--lime);font-size:14px;flex-shrink:0;padding-top:1px}
+  .step p{font-size:15.5px;color:#d5ded7;line-height:1.45}
+  .step p b{color:#fff}
+
+  .cta{display:inline-flex;align-items:center;gap:11px;margin-top:30px;font-family:'Archivo';font-weight:800;font-size:18px;letter-spacing:-.01em;padding:18px 30px;border-radius:999px;text-decoration:none;background:var(--lime);color:var(--ink);box-shadow:0 4px 0 #14251c;transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 6px 0 #14251c}
+  .cta:active{transform:translateY(2px);box-shadow:0 2px 0 #14251c}
+  .cta:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+  .cta svg{width:20px;height:20px}
+
+  .fine{margin-top:18px;font-family:'Space Mono',monospace;font-size:12.5px;color:#7d938a;line-height:1.6}
+  .fine a{color:#a9bab0}
+
+  @media(prefers-reduced-motion:reduce){.check{animation:none}}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="check">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#13241B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <div class="eyebrow">Payment confirmed &middot; seat locked</div>
+    <h1>You're in. <span class="g">Let's go.</span></h1>
+    <p class="sub">Your spot in the founding cohort is secured. Everything happens in the WhatsApp group, so join it now and you won't miss the kickoff.</p>
+
+    <div class="next">
+      <div class="lbl">What happens next</div>
+      <div class="step"><span class="num">01</span><p><b>Join the WhatsApp group</b> using the button below. This is where all sessions, dates, and reviews happen.</p></div>
+      <div class="step"><span class="num">02</span><p><b>Check your email.</b> Your payment receipt is on its way from Razorpay.</p></div>
+      <div class="step"><span class="num">03</span><p><b>Come ready to work.</b> Before session one, jot down in one line: what you're selling, and who to. That's your first move.</p></div>
+    </div>
+
+    <a class="cta" href="REPLACE_WITH_WHATSAPP_GROUP_LINK">
+      <svg viewBox="0 0 24 24" fill="#13241B"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.01c-.24.68-1.42 1.31-1.95 1.36-.5.05-1.13.07-1.83-.11-.42-.13-.96-.31-1.66-.61-2.92-1.26-4.82-4.2-4.97-4.4-.14-.19-1.18-1.57-1.18-2.99s.75-2.12 1.01-2.41c.27-.29.58-.36.77-.36l.56.01c.18 0 .42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.09.19-.14.31-.28.48l-.42.49c-.14.14-.28.29-.12.57.16.29.72 1.18 1.54 1.91 1.06.95 1.95 1.24 2.24 1.38.28.14.44.12.61-.07.16-.19.7-.82.89-1.1.18-.29.37-.24.61-.14.24.09 1.55.73 1.81.87.27.14.44.21.51.32.06.12.06.66-.18 1.34z"/></svg>
+      Join the WhatsApp group
+    </a>
+
+    <p class="fine">Trouble joining? Message me directly at <a href="REPLACE_WITH_YOUR_WHATSAPP_DM">wa.me/91XXXXXXXXXX</a><br>Beyond First Dollar</p>
+  </div>
+</body>
+</html>

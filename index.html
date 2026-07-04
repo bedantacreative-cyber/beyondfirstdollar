@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beyond First Dollar | Land your first $1,000 client in 3 weeks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;450;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#EDEFE9;
+    --paper-2:#E4E7DF;
+    --ink:#13241B;
+    --ink-soft:#25392E;
+    --pine:#1C6B45;
+    --lime:#C6F24E;
+    --gold:#E0A526;
+    --mute:#66756B;
+    --line:#CDD2C7;
+    --radius:14px;
+    --wrap:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  a{color:inherit}
+  .mono{font-family:'Space Mono',monospace}
+  .display{font-family:'Archivo',sans-serif}
+
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--pine);
+    font-weight:700;
+  }
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Archivo',sans-serif;font-weight:800;
+    font-size:17px;letter-spacing:-.01em;
+    padding:16px 26px;border-radius:999px;
+    text-decoration:none;cursor:pointer;border:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{background:var(--lime);color:var(--ink);box-shadow:0 4px 0 var(--pine)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--pine)}
+  .btn-primary:active{transform:translateY(2px);box-shadow:0 2px 0 var(--pine)}
+  .btn-arrow{font-size:19px;transition:transform .15s ease}
+  .btn-primary:hover .btn-arrow{transform:translateX(3px)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink);box-shadow:none}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  a.btn:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+  .topbar{padding:22px 0;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:'Archivo';font-weight:900;font-size:18px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:11px;height:11px;background:var(--lime);border:2px solid var(--ink);border-radius:50%}
+  .topbar .slots{font-family:'Space Mono',monospace;font-size:12.5px;color:var(--mute);letter-spacing:.05em}
+  .topbar .slots b{color:var(--pine)}
+
+  .hero{padding:38px 0 54px}
+  .hero .eyebrow{margin-bottom:20px}
+  .hero h1{
+    font-family:'Archivo';font-weight:900;
+    font-size:clamp(38px,7vw,74px);
+    line-height:.98;letter-spacing:-.035em;
+    max-width:14ch;
+  }
+  .hero h1 .amt{
+    color:var(--gold);
+    font-variant-numeric:tabular-nums;
+    position:relative;white-space:nowrap;
+  }
+  .hero .sub{
+    margin-top:24px;font-size:clamp(17px,2.3vw,20px);
+    color:var(--ink-soft);max-width:52ch;line-height:1.5;
+  }
+  .hero .cta-row{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .hero .under{margin-top:16px;font-family:'Space Mono',monospace;font-size:13px;color:var(--mute)}
+  .hero .under b{color:var(--ink)}
+
+  .board{
+    margin-top:44px;
+    border:2px solid var(--ink);border-radius:var(--radius);
+    background:var(--ink);color:var(--paper);
+    display:grid;grid-template-columns:repeat(4,1fr);
+    overflow:hidden;
+  }
+  .board .cell{padding:22px 20px;border-right:1px solid #2c3f34}
+  .board .cell:last-child{border-right:none}
+  .board .cell .k{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8fa598}
+  .board .cell .v{font-family:'Archivo';font-weight:800;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.02em;margin-top:8px;line-height:1;font-variant-numeric:tabular-nums}
+  .board .cell .v.hl{color:var(--lime)}
+  .board .cell .v.gold{color:var(--gold)}
+  .board .cell .note{font-family:'Space Mono',monospace;font-size:10.5px;color:#7d938a;margin-top:7px;letter-spacing:.03em}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+  .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--lime);margin-right:6px;animation:pulse 1.6s infinite}
+
+  section{padding:60px 0}
+  .sec-head{margin-bottom:34px}
+  .sec-head .eyebrow{margin-bottom:12px}
+  .sec-head h2{font-family:'Archivo';font-weight:800;font-size:clamp(28px,4.2vw,42px);letter-spacing:-.03em;line-height:1.02;max-width:20ch}
+  .sec-head p{margin-top:14px;color:var(--ink-soft);max-width:56ch;font-size:17.5px}
+
+  .band{background:var(--ink);color:var(--paper)}
+  .band .eyebrow{color:var(--lime)}
+  .band h2{color:var(--paper)}
+  .band .lead{font-family:'Archivo';font-weight:700;font-size:clamp(22px,3.4vw,32px);line-height:1.18;letter-spacing:-.02em;max-width:24ch}
+  .band .lead em{color:var(--gold);font-style:normal}
+  .band .p{margin-top:22px;color:#c3cec6;max-width:54ch;font-size:17.5px}
+  .band .p2{margin-top:14px;color:#c3cec6;max-width:54ch;font-size:17.5px}
+  .band .p2 b{color:var(--lime)}
+
+  .weeks{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .week{
+    background:var(--paper);border:2px solid var(--ink);border-radius:var(--radius);
+    padding:24px 22px;position:relative;
+  }
+  .week .wk{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--pine);font-weight:700;text-transform:uppercase}
+  .week h3{font-family:'Archivo';font-weight:800;font-size:22px;letter-spacing:-.02em;margin-top:10px}
+  .week p{margin-top:10px;color:var(--ink-soft);font-size:15.5px;line-height:1.5}
+  .week .do{margin-top:16px;font-family:'Space Mono',monospace;font-size:12px;color:var(--mute);border-top:1px dashed var(--line);padding-top:12px}
+  .week .do b{color:var(--ink);display:block;margin-bottom:3px;letter-spacing:.04em}
+
+  .format-note{
+    margin-top:26px;display:flex;gap:14px;align-items:flex-start;
+    background:var(--paper-2);border-radius:var(--radius);padding:20px 22px;
+    border-left:5px solid var(--lime);
+  }
+  .format-note .tag{font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:.1em;color:var(--pine);white-space:nowrap;padding-top:2px}
+  .format-note p{font-size:16px;color:var(--ink-soft)}
+  .format-note p b{color:var(--ink)}
+
+  .proof{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .proof .stat{
+    border:2px solid var(--ink);border-radius:var(--radius);padding:26px 24px;background:var(--paper);
+  }
+  .proof .stat .n{font-family:'Archivo';font-weight:900;font-size:clamp(40px,6vw,60px);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+  .proof .stat .n.g{color:var(--gold)}
+  .proof .stat .n.p{color:var(--pine)}
+  .proof .stat .d{margin-top:12px;color:var(--ink-soft);font-size:16px;max-width:30ch}
+  .proof-line{margin-top:22px;font-size:16px;color:var(--mute)}
+  .proof-line b{color:var(--ink)}
+
+  .fit{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .fit .col{border-radius:var(--radius);padding:24px 24px 26px;border:2px solid var(--ink)}
+  .fit .col.yes{background:var(--ink);color:var(--paper)}
+  .fit .col.no{background:transparent}
+  .fit .col h4{font-family:'Archivo';font-weight:800;font-size:18px;letter-spacing:-.01em;display:flex;align-items:center;gap:9px;margin-bottom:14px}
+  .fit .col.yes h4{color:var(--lime)}
+  .fit ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .fit li{font-size:15.5px;line-height:1.4;padding-left:24px;position:relative}
+  .fit .yes li::before{content:"\2192";position:absolute;left:0;color:var(--lime);font-weight:700}
+  .fit .yes li{color:#d5ded7}
+  .fit .no li::before{content:"\00d7";position:absolute;left:2px;color:var(--mute);font-weight:700}
+  .fit .no li{color:var(--ink-soft)}
+
+  .price-band{background:var(--paper-2)}
+  .price-card{
+    border:2.5px solid var(--ink);border-radius:20px;background:var(--paper);
+    overflow:hidden;max-width:720px;margin:0 auto;
+  }
+  .price-top{padding:32px 34px;display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between}
+  .price-top .lbl{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--pine);font-weight:700}
+  .price-top .amount{font-family:'Archivo';font-weight:900;font-size:clamp(48px,9vw,76px);letter-spacing:-.04em;line-height:.9;font-variant-numeric:tabular-nums}
+  .price-top .amount small{font-size:.42em;color:var(--mute);font-weight:700;letter-spacing:0}
+  .price-top .founding{text-align:right}
+  .price-top .founding .was{font-family:'Space Mono',monospace;font-size:13px;color:var(--mute);text-decoration:line-through}
+  .price-top .founding .tag{
+    display:inline-block;margin-top:6px;background:var(--gold);color:var(--ink);
+    font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:.06em;
+    padding:5px 11px;border-radius:6px;
+  }
+  .price-mid{padding:0 34px 8px}
+  .price-mid .math{
+    display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+    font-family:'Archivo';font-weight:700;font-size:clamp(17px,2.6vw,22px);letter-spacing:-.01em;
+    padding:22px 0;border-top:1px solid var(--line);
+  }
+  .price-mid .math .x{color:var(--pine)}
+  .price-mid .math .g{color:var(--gold)}
+  .price-mid .math .light{color:var(--mute);font-weight:500;font-size:.8em}
+  .price-bot{padding:24px 34px 32px;background:var(--ink);color:var(--paper);display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+  .price-bot .left{font-family:'Space Mono',monospace;font-size:13px;color:#a9bab0;max-width:30ch}
+  .price-bot .left b{color:var(--lime);display:block;font-size:15px;margin-bottom:3px}
+
+  details{border-top:1.5px solid var(--line);padding:20px 0}
+  details:last-of-type{border-bottom:1.5px solid var(--line)}
+  summary{
+    font-family:'Archivo';font-weight:700;font-size:18px;letter-spacing:-.01em;
+    cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary .ic{font-family:'Space Mono',monospace;color:var(--pine);font-size:22px;transition:transform .2s;flex-shrink:0}
+  details[open] summary .ic{transform:rotate(45deg)}
+  details p{margin-top:14px;color:var(--ink-soft);font-size:16px;line-height:1.6;max-width:60ch}
+
+  .final{background:var(--ink);color:var(--paper);text-align:center;border-radius:24px;padding:56px 30px;margin:60px 0}
+  .final .eyebrow{color:var(--lime);justify-content:center}
+  .final h2{font-family:'Archivo';font-weight:900;font-size:clamp(30px,5.5vw,52px);letter-spacing:-.035em;line-height:1;margin:16px auto 0;max-width:16ch}
+  .final h2 .g{color:var(--gold)}
+  .final .slots-live{margin-top:22px;font-family:'Space Mono',monospace;font-size:14px;color:#a9bab0}
+  .final .slots-live b{color:var(--lime)}
+  .final .btn{margin-top:26px}
+  .final .fine{margin-top:18px;font-family:'Space Mono',monospace;font-size:12px;color:#7d938a}
+
+  footer{padding:30px 0 46px;border-top:1.5px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;color:var(--mute);font-size:13px;font-family:'Space Mono',monospace}
+  footer b{color:var(--ink)}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:820px){
+    .board{grid-template-columns:1fr 1fr}
+    .board .cell:nth-child(2){border-right:none}
+    .board .cell:nth-child(1),.board .cell:nth-child(2){border-bottom:1px solid #2c3f34}
+    .weeks{grid-template-columns:1fr}
+    .proof{grid-template-columns:1fr}
+    .fit{grid-template-columns:1fr}
+  }
+  @media(max-width:520px){
+    body{font-size:16px}
+    .hero{padding:26px 0 40px}
+    section{padding:48px 0}
+    .price-top,.price-mid,.price-bot{padding-left:22px;padding-right:22px}
+    .topbar .slots{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .live-dot{animation:none}
+    *{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>Beyond First Dollar</div>
+    <div class="slots"><span class="live-dot"></span>SLOTS LEFT: <b>03</b></div>
+  </div>
+</div>
+
+<header class="wrap hero">
+  <div class="eyebrow">A done-with-you cohort &middot; founding round</div>
+  <h1>Land your first <span class="amt">$1,000</span> client in 3 weeks.</h1>
+  <p class="sub">Not another course you watch alone and forget. I hand you my exact client getting system, then we work through it together, week by week, until the client lands.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="REPLACE_WITH_YOUR_LINK">Lock my spot <span class="btn-arrow">&rarr;</span></a>
+    <a class="btn btn-ghost" href="#how">See how it works</a>
+  </div>
+  <p class="under">Founding price <b>&#8377;2,999</b> &middot; 3 live sessions &middot; only 3 spots left</p>
+
+  <div class="board">
+    <div class="cell">
+      <div class="k">Target</div>
+      <div class="v gold">$1,000+</div>
+      <div class="note">your first real client</div>
+    </div>
+    <div class="cell">
+      <div class="k">Format</div>
+      <div class="v">DWY</div>
+      <div class="note">done with you, not solo</div>
+    </div>
+    <div class="cell">
+      <div class="k">Length</div>
+      <div class="v">3 weeks</div>
+      <div class="note">3 sessions &middot; 1 / week</div>
+    </div>
+    <div class="cell">
+      <div class="k">Seats</div>
+      <div class="v hl">03</div>
+      <div class="note"><span class="live-dot"></span>remaining this round</div>
+    </div>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap">
+    <div class="eyebrow" style="margin-bottom:16px">If this is you</div>
+    <p class="lead">You're doing the work. Sending the messages. And the clients <em>still aren't coming.</em></p>
+    <p class="p">That silence gets loud after a while. It starts to feel like the problem is you. It isn't. It's almost always one or two broken links in a system nobody ever showed you how to build.</p>
+    <p class="p2">Fix those, get <b>one real win</b> under your belt, and the whole thing starts to move. That's the entire point of these three weeks.</p>
+  </div>
+</section>
+
+<section id="how" class="wrap reveal">
+  <div class="sec-head">
+    <div class="eyebrow">The 3 week sprint</div>
+    <h2>One focused move each week.</h2>
+    <p>Every week you learn one piece, then go execute it. I review your actual messages and calls, and we fix what's not landing, live.</p>
+  </div>
+
+  <div class="weeks">
+    <div class="week">
+      <div class="wk">Week 01</div>
+      <h3>Diagnose</h3>
+      <p>We find the real reason clients aren't closing (offer, targeting, or the call itself) and lock in an offer people actually want to buy.</p>
+      <div class="do"><b>You'll do</b>Build your first qualified prospect list.</div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 02</div>
+      <h3>Outreach</h3>
+      <p>My exact proof anchored outreach system: who to hit, what to send, and how to get replies without sounding desperate.</p>
+      <div class="do"><b>You'll do</b>Run outreach at volume. Land your first reply.</div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 03</div>
+      <h3>Close</h3>
+      <p>Run the sales call so you're leading it: presenting proof at the right moment, handling objections, and following up to close.</p>
+      <div class="do"><b>You'll do</b>Take the call. Sign the client.</div>
+    </div>
+  </div>
+
+  <div class="format-note">
+    <span class="tag">DONE WITH YOU</span>
+    <p>Not a watch alone course, and not me doing it for you. <b>You execute, I guide</b>, reviewing your real work every week, so you leave able to do this on your own, first client already in hand.</p>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head">
+    <div class="eyebrow">Why trust me with this</div>
+    <h2>The system is tested against real clients.</h2>
+  </div>
+  <div class="proof">
+    <div class="stat">
+      <div class="n g">88</div>
+      <div class="d">sales calls booked for a client, with <b>zero ad spend</b>, purely through the outreach system you'll learn here.</div>
+    </div>
+    <div class="stat">
+      <div class="n p">200K+</div>
+      <div class="d">followers grown for a client from a 10.5K start, with 10M+ views on their content.</div>
+    </div>
+  </div>
+  <p class="proof-line">I trained inside the industry with <b>Iman Gadzhi's team</b> back in 2022. Everything in the sprint is what I actually use with real clients. Not theory.</p>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head">
+    <div class="eyebrow">Read before you join</div>
+    <h2>Who this is for.</h2>
+  </div>
+  <div class="fit">
+    <div class="col yes">
+      <h4>You're a fit if</h4>
+      <ul>
+        <li>You want your first paying client and haven't cracked it yet</li>
+        <li>You'll actually do the homework between sessions</li>
+        <li>You have an offer or skill to sell (or nearly)</li>
+        <li>You want a system, not just motivation</li>
+      </ul>
+    </div>
+    <div class="col no">
+      <h4>Not a fit if</h4>
+      <ul>
+        <li>You want someone to get clients for you while you watch</li>
+        <li>You won't put in the outreach reps</li>
+        <li>You're looking for a magic trick, not real work</li>
+        <li>You expect results without effort</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="price-band">
+  <div class="wrap reveal">
+    <div class="sec-head" style="text-align:center">
+      <div class="eyebrow" style="justify-content:center">The investment</div>
+      <h2 style="margin:0 auto">One client makes it back many times over.</h2>
+    </div>
+
+    <div class="price-card">
+      <div class="price-top">
+        <div>
+          <div class="lbl">Founding cohort &middot; full access</div>
+          <div class="amount">&#8377;2,999</div>
+        </div>
+        <div class="founding">
+          <div class="was">Next round &#8377;7,000</div>
+          <div class="tag">FOUNDING PRICE &middot; THIS ROUND ONLY</div>
+        </div>
+      </div>
+      <div class="price-mid">
+        <div class="math">
+          <span>1 client</span>
+          <span class="light">&asymp;</span>
+          <span class="g">&#8377;80,000+</span>
+          <span class="light">vs</span>
+          <span>&#8377;2,999 in</span>
+          <span class="x">= ~25&times; back</span>
+        </div>
+      </div>
+      <div class="price-bot">
+        <div class="left"><b>Only 3 seats left</b>Kept small on purpose so everyone gets real, hands on attention.</div>
+        <a class="btn btn-primary" href="REPLACE_WITH_YOUR_LINK">Lock my spot <span class="btn-arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head">
+    <div class="eyebrow">Straight answers</div>
+    <h2>Questions people ask.</h2>
+  </div>
+
+  <details>
+    <summary>Is this a course or actual coaching? <span class="ic">+</span></summary>
+    <p>Coaching. It's done with you: 3 live sessions where I teach one piece at a time and review your real messages and calls each week. You're never guessing alone.</p>
+  </details>
+  <details>
+    <summary>How much time will it take? <span class="ic">+</span></summary>
+    <p>3 sessions, about an hour each, one per week for 3 weeks, plus the outreach you do between them. Sessions are evenings so they fit around your day. The results come from the reps in between, so expect to put in real hours there.</p>
+  </details>
+  <details>
+    <summary>Do you guarantee I'll land a client? <span class="ic">+</span></summary>
+    <p>No honest coach can guarantee that. It depends on you doing the work. What I guarantee is the exact system, and me in your corner reviewing everything until it's dialled in. Do the reps and the first client is very reachable in the window.</p>
+  </details>
+  <details>
+    <summary>I'm tight on money right now. <span class="ic">+</span></summary>
+    <p>I get it. Most people here are exactly why they need clients. But that's the point: &#8377;2,999 is aimed at fixing the thing that's keeping you broke. One client pays it back roughly 25 times. If cash is genuinely tight, message me and we'll talk about a split.</p>
+  </details>
+  <details>
+    <summary>Why only 3 spots? <span class="ic">+</span></summary>
+    <p>Because I review everyone's actual outreach and calls personally. That only works with a small group. Once these seats are gone, the next round opens later, and at the higher price.</p>
+  </details>
+</section>
+
+<div class="wrap">
+  <section id="lock" class="final reveal">
+    <div class="eyebrow">Founding round</div>
+    <h2>Get your first <span class="g">$1,000</span> client.</h2>
+    <div class="slots-live"><span class="live-dot"></span>Only <b>3 seats</b> left &middot; founding price &#8377;2,999 &middot; closes when full</div>
+    <a class="btn btn-primary" href="REPLACE_WITH_YOUR_LINK">Lock my spot <span class="btn-arrow">&rarr;</span></a>
+    <div class="fine">Do the work. Land the client. Keep the system.</div>
+  </section>
+</div>
+
+<div class="wrap">
+  <footer>
+    <span>&copy; Beyond First Dollar</span>
+    <span>beyondfirstdollar.com</span>
+  </footer>
+</div>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
