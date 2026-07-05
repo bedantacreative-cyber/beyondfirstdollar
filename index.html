@@ -258,7 +258,7 @@
   <p class="sub">Not another course you watch alone and forget. I hand you my exact client getting system, then we work through it together, week by week, until the client lands.</p>
   <p style="margin-top:14px;font-family:'Space Mono',monospace;font-size:14px;color:var(--mute)">Target: your first <b style="color:var(--ink)">$1,000+</b> client</p>
   <div class="cta-row">
-    <button type="button" class="btn btn-primary lock-spot-btn">Lock my spot <span class="btn-arrow">&rarr;</span></button>
+    <a class="btn btn-primary" href="https://payments.cashfree.com/forms/weeklymembership">Lock my spot <span class="btn-arrow">&rarr;</span></a>
     <a class="btn btn-ghost" href="#how">See how it works</a>
   </div>
   <p class="under">Founding round &middot; 3 live sessions &middot; only 3 spots left</p>
@@ -406,7 +406,7 @@
       </div>
       <div class="price-bot">
         <div class="left"><b>Only 3 seats left</b>Kept small on purpose so everyone gets real, hands on attention.</div>
-        <button type="button" class="btn btn-primary lock-spot-btn">Lock my spot <span class="btn-arrow">&rarr;</span></button>
+        <a class="btn btn-primary" href="https://payments.cashfree.com/forms/weeklymembership">Lock my spot <span class="btn-arrow">&rarr;</span></a>
       </div>
     </div>
   </div>
@@ -445,7 +445,7 @@
     <div class="eyebrow">Founding round</div>
     <h2>Get your first <span class="g">high-ticket</span> client.</h2>
     <div class="slots-live"><span class="live-dot"></span>Target $1,000+ &middot; only <b>3 seats</b> left &middot; founding price &#8377;2,999 &middot; closes when full</div>
-    <button type="button" class="btn btn-primary lock-spot-btn">Lock my spot <span class="btn-arrow">&rarr;</span></button>
+    <a class="btn btn-primary" href="https://payments.cashfree.com/forms/weeklymembership">Lock my spot <span class="btn-arrow">&rarr;</span></a>
     <div class="fine">Do the work. Land the client. Keep the system.</div>
   </section>
 </div>
@@ -462,96 +462,6 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-  // Public key id only. This is safe to expose in the browser, it is the
-  // equivalent of a "publishable key" -- the secret key never leaves the server.
-  const RAZORPAY_KEY_ID = "rzp_live_T9jkwbJNch4nRd";
-  const COHORT_AMOUNT_PAISE = 299900; // Rs 2,999
-
-  function setButtonsLoading(isLoading) {
-    document.querySelectorAll('.lock-spot-btn').forEach(btn => {
-      btn.disabled = isLoading;
-      btn.style.opacity = isLoading ? '0.6' : '1';
-      btn.style.cursor = isLoading ? 'wait' : 'pointer';
-    });
-  }
-
-  async function startCheckout() {
-    setButtonsLoading(true);
-    try {
-      const orderRes = await fetch('/api/create-order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          amount: COHORT_AMOUNT_PAISE,
-          currency: 'INR',
-          receipt: 'bfd_' + Date.now(),
-        }),
-      });
-
-      if (!orderRes.ok) {
-        throw new Error('Could not create order');
-      }
-      const order = await orderRes.json();
-
-      const options = {
-        key: RAZORPAY_KEY_ID,
-        amount: order.amount,
-        currency: order.currency,
-        name: 'Beyond First Dollar',
-        description: 'Founding Cohort Seat',
-        order_id: order.order_id,
-        handler: async function (response) {
-          try {
-            const verifyRes = await fetch('/api/verify-payment', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-              }),
-            });
-            const verifyData = await verifyRes.json();
-
-            if (verifyData.success) {
-              window.location.href = '/thank-you.html';
-            } else {
-              alert("We couldn't verify your payment. If money was deducted, message us directly and we'll sort it right away.");
-            }
-          } catch (err) {
-            console.error('verify-payment error:', err);
-            alert("Something went wrong confirming your payment. If money was deducted, message us directly and we'll sort it right away.");
-          }
-        },
-        modal: {
-          ondismiss: function () {
-            setButtonsLoading(false);
-          },
-        },
-        theme: { color: '#1C6B45' },
-      };
-
-      const rzp = new Razorpay(options);
-      rzp.on('payment.failed', function (response) {
-        alert('Payment failed: ' + response.error.description + '. Please try again.');
-        setButtonsLoading(false);
-      });
-      rzp.open();
-    } catch (err) {
-      console.error('startCheckout error:', err);
-      alert('Something went wrong starting checkout. Please try again in a moment.');
-    } finally {
-      setButtonsLoading(false);
-    }
-  }
-
-  document.querySelectorAll('.lock-spot-btn').forEach(btn => {
-    btn.addEventListener('click', startCheckout);
-  });
 </script>
 </body>
 </html>
